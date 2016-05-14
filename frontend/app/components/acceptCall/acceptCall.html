@@ -1,10 +1,18 @@
-<div class="container" ng-if="shouldDisplayAcceptCall()">
-    <h1>Accept Call</h1>
+<h1>Accept Call</h1>
+<div class="container" ng-if="!shouldDisplayAcceptCall()">
+    <p>You dont have sufficient rights to view this page</p>
+</div>
+<div class="container" ng-if="shouldDisplayAcceptCall() && !acceptedCall">
+    <div class="row">
+        <button class="btn btn-lg" ng-click="acceptCall()">Accept Call</button>
+    </div>
+</div>
+<div class="container" ng-if="shouldDisplayAcceptCall() && acceptedCall">
     <form class="form-horizontal">
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="type">Type?</label>
-                <select class="form-control" id="type" ng-model="type">
+                <select class="form-control" id="type" ng-model="data.type">
                     <option value="0">Fire Emergency</option>
                     <option value="1">Medical Emergency</option>
                     <option value="2">Police Emergency</option>
@@ -14,7 +22,7 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="priority">Priority?</label>
-                <select class="form-control" id="priority" ng-model="priority">
+                <select class="form-control" id="priority" ng-model="data.priority">
                     <option value="0">Low</option>
                     <option value="1" selected>Medium</option>
                     <option value="2">High</option>
@@ -25,18 +33,18 @@
         <div class="form-group">
             <div class="col-sm-8">
                 <label for="street">Street</label>
-                <input type="text" class="form-control" id="street" placeholder="Street" ng-model="street">
+                <input type="text" class="form-control" id="street" placeholder="Street" ng-model="data.street">
             </div>
             <div class="col-sm-4">
                 <label for="nr">Nr</label>
-                <input type="text" class="form-control col-sm-4" id="nr" placeholder="Nr" ng-model="nr">
+                <input type="text" class="form-control col-sm-4" id="nr" placeholder="Nr" ng-model="data.nr">
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-4">
                 <label for="country">Country</label>
-                <select id="country" class="form-control" ng-model="country">
+                <select id="country" class="form-control" ng-model="data.country">
                     <option value="AF">Afghanistan</option>
                     <option value="AL">Albania</option>
                     <option value="DZ">Algeria</option>
@@ -280,11 +288,11 @@
             </div>
             <div class="col-sm-4">
                 <label for="nr">City</label>
-                <input type="text" class="form-control col-sm-4" id="city" placeholder="City" ng-model="city">
+                <input type="text" class="form-control col-sm-4" id="city" placeholder="City" ng-model="data.city">
             </div>
             <div class="col-sm-4">
                 <label for="postalcode">Postal Code</label>
-                <input type="text" class="form-control col-sm-4" id="postalcode" placeholder="Postal Code" ng-model="postalcode">
+                <input type="text" class="form-control col-sm-4" id="postalcode" placeholder="Postal Code" ng-model="data.postalcode">
             </div>
         </div>
 
@@ -292,24 +300,24 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="who">Who is involved?</label>
-                <textarea class="form-control" id="who" ng-model="who"></textarea>
+                <textarea class="form-control" id="who" ng-model="data.who"></textarea>
             </div>
         </div>
         
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="what">What happened?</label>
-                <textarea class="form-control" id="what" ng-model="what"></textarea>
+                <textarea class="form-control" id="what" ng-model="data.what"></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="additionalInfo">Additional Info</label>
-                <textarea class="form-control" id="additionalInfo" ng-model="additionalInfo"></textarea>
+                <textarea class="form-control" id="additionalInfo" ng-model="data.additionalInfo"></textarea>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default" ng-click="accept()">Accept</button>
+        <button type="submit" class="btn btn-default" ng-click="submitCall()">Accept</button>
         <button type="reset" class="btn btn-default">Reset</button>
     </form>
 </div>

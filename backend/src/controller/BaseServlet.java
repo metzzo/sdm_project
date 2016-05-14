@@ -13,15 +13,32 @@ import java.io.PrintWriter;
  * Created by rfischer on 25.04.16.
  */
 public abstract class BaseServlet extends javax.servlet.http.HttpServlet {
+    protected enum RequestType {
+        POST, GET, PUT
+    }
+
     private HttpServletRequest request;
     private HttpServletResponse response;
+    private RequestType type;
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        type = RequestType.PUT;
+        myProcessRequest(request, response);
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        type = RequestType.POST;
         myProcessRequest(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        type = RequestType.GET;
         myProcessRequest(request, response);
+    }
+
+    protected RequestType getRequestType() {
+        return type;
     }
 
     private void myProcessRequest(HttpServletRequest request, HttpServletResponse response) {

@@ -3,8 +3,8 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import controller.json.LogJson;
+import controller.json.LogsJson;
 import controller.json.OperationJson;
-import controller.json.ReportJson;
 import controller.json.StatusResponseJson;
 import domain.Dispatcher;
 import domain.Log;
@@ -15,13 +15,15 @@ import service.OperationDAO;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
- * Created by rfischer on 11.05.16.
+ * Created by rfischer on 14.05.16.
  */
-@WebServlet(name = "AcceptCallController", urlPatterns = {"/acceptCallController"})
-public class AcceptCallController extends BaseServlet {
+@WebServlet(name = "ManageLogController", urlPatterns = {"/manageLogController"})
+public class ManageLogController extends BaseServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         boolean success = false;
@@ -30,20 +32,23 @@ public class AcceptCallController extends BaseServlet {
             try {
                 switch (getRequestType()) {
                     case POST: {
-                        Operation op = gson.fromJson(getBody(), OperationJson.class).toOperation();
-                        op.getLog().setCallingEndTime(new Date());
-                        op.getLog().setOperation(op);
-                        OperationDAO.getInstance().persist(op);
-                        LogDAO.getInstance().persist(op.getLog());
-                        success = true;
-                        break;
+                        Log log = new Log();
+                        log.setCallingTime(new Date());
+                        LogDAO.getInstance().persist(log);
+                        response(gson.toJson(new LogJson(log), LogJson.class));
+                        return;
                     }
                     case PUT: {
 
                         break;
                     }
                     case GET: {
-
+                        List<Log> logs = LogDAO.getInstance().findLogsForUser(getUser());
+                        List<LogJson> jsonLogs = new ArrayList<LogJson>();
+                        for (Log l : logs) {
+                            jsonLogs.add(new LogJson(l));
+                        }
+                        response(gson.toJson(new LogsJson(jsonLogs), LogsJson.class));
                         break;
                     }
                     default:

@@ -1,20 +1,20 @@
 /**
- * Created by rfischer on 11.05.16.
+ * Created by rfischer on 13.05.16.
  */
 
 angular.module('frontendApp')
-  .factory('acceptCallService', function($http, $q, serviceURL, loginService) {
+  .factory('manageReportService', function($http, $q, serviceURL, loginService) {
     return {
-      createLog: function() {
+      getReports: function() {
         return $q(function(resolve, reject) {
           $http({
-            method: 'POST',
-            url: serviceURL + '/manageLogController'
+            method: 'GET',
+            url: serviceURL + '/manageReportController'
           }).then(function(response) {
             // success
             var data = response.data;
             if (data.success) {
-              resolve(data);
+              resolve(data.reports);
             } else {
               reject();
             }
@@ -25,18 +25,17 @@ angular.module('frontendApp')
           });
         });
       },
-      acceptCall: function(data) {
-        data['dispatcherId'] = loginService.getUser().id;
+      updateReport: function(report) {
         return $q(function(resolve, reject) {
           $http({
             method: 'POST',
-            url: serviceURL + '/acceptCallController',
-            data: data
+            data: report,
+            url: serviceURL + '/manageReportController'
           }).then(function(response) {
             // success
             var data = response.data;
             if (data.success) {
-              resolve();
+              resolve(data);
             } else {
               reject();
             }

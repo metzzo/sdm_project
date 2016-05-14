@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('frontendApp')
-  .controller('LoginCtrl', function ($scope, loginService) {
+  .controller('LoginCtrl', function ($scope, $location, loginService) {
     $scope.data = {
       username: "",
       pw: ""
@@ -14,6 +14,12 @@ angular.module('frontendApp')
         .login($scope.data.username, $scope.data.pw)
         .then(function(data) {
           $scope.loginFailed = false;
+          
+          if (data.type == 'Dispatcher') {
+            $location.path('/acceptCall');
+          } else if (data.type == 'EmergencyUnit') {
+            $location.path('/forwardCall');
+          }
         }, function() {
           $scope.loginFailed = true;
         });

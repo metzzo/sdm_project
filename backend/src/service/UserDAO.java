@@ -1,12 +1,14 @@
 package service;
 
 import domain.Dispatcher;
+import domain.EmergencyUnit;
 import domain.User;
 
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -80,6 +82,10 @@ public class UserDAO {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public EmergencyUnit findEmergencyUnitById(Long emergencyUnitId) {
+        return em.find(EmergencyUnit.class, emergencyUnitId);
     }
 
     public Dispatcher findDispatcherById(long id) {

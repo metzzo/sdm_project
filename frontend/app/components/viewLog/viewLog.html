@@ -1,0 +1,36 @@
+<h1>View Logs</h1>
+<div class="container" ng-if="!shouldDisplayViewLog()">
+    <p>You dont have sufficient rights to view this page</p>
+</div>
+<div class="container" ng-if="shouldDisplayViewLog()">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Calling Time</td>
+            <td>Calling End Time</td>
+            <td>Assigned Unit</td>
+            <td>Priority</td>
+            <td>Street Nr</td>
+            <td>Country City Postalcode</td>
+            <td>What</td>
+            <td>Who</td>
+            <td>Additional Info</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="log in logs">
+            <td>{{log.callingTime}}</td>
+            <td>{{log.callingEndTime}}</td>
+            <td>{{log.assignedUnit}}</td>
+            <td>{{log.operation.priority}}</td>
+            <td>{{log.operation.street}} {{log.operation.nr}}</td>
+            <td>{{log.operation.country}} {{log.operation.city}} {{log.operation.postalcode}}</td>
+            <td>{{log.operation.what}}</td>
+            <td>{{log.operation.who}}</td>
+            <td>{{log.operation.additionalInfo}}</td>
+            <td><button class="btn btn-default" ng-click="viewReport(log.operation.reportId)" ng-if="log.operation.reportId">Report</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

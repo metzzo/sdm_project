@@ -15,6 +15,8 @@ public class Operation {
 
     private OperationType type;
     private OperationPriority priority;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String who;
     private String what;
@@ -23,10 +25,19 @@ public class Operation {
     @ManyToOne
     private Dispatcher initializer;
 
+    @ManyToOne
+    private EmergencyUnit assignedUnit;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Report report;
+
+    @OneToOne
+    private Log log;
+
     public Operation() {
     }
 
-    public Operation(OperationType type, OperationPriority priority, Address address, String who, String what, String additionalInfo, Dispatcher initializer) {
+    public Operation(OperationType type, OperationPriority priority, Address address, String who, String what, String additionalInfo, Dispatcher initializer, EmergencyUnit assignedUnit, Report report, Log log, Long id) {
         this.type = type;
         this.priority = priority;
         this.address = address;
@@ -34,6 +45,10 @@ public class Operation {
         this.what = what;
         this.additionalInfo = additionalInfo;
         this.initializer = initializer;
+        this.assignedUnit = assignedUnit;
+        this.report = report;
+        this.log = log;
+        this.id = id;
     }
 
     public Long getId() {
@@ -98,5 +113,29 @@ public class Operation {
 
     public void setInitializer(Dispatcher initializer) {
         this.initializer = initializer;
+    }
+
+    public EmergencyUnit getAssignedUnit() {
+        return assignedUnit;
+    }
+
+    public void setAssignedUnit(EmergencyUnit assignedUnit) {
+        this.assignedUnit = assignedUnit;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+
+    public Log getLog() {
+        return log;
+    }
+
+    public void setLog(Log log) {
+        this.log = log;
     }
 }

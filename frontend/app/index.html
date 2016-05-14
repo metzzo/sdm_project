@@ -24,17 +24,21 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+          <li class="active"><a ng-href="#/login">Login</a></li>
+          <li><a ng-href="#/acceptCall">Accept Call</a></li>
+          <li><a ng-href="#/forwardCall">Forward Call</a></li>
+          <li><a ng-href="#/manageReport">Manage Report</a></li>
+          <li><a ng-href="#/viewLog">View Log</a></li>
         </ul>
         <h3 class="text-muted">Emergency Help</h3>
       </div>
-      
+      <!--
       <div ng-include="'components/login/login.html'" ng-controller="LoginCtrl"></div>
       <div ng-include="'components/acceptCall/acceptCall.html'" ng-controller="AcceptCallCtrl"></div>
-
-
+      <div ng-include="'components/forwardCall/forwardCall.html'" ng-controller="ForwardCallCtrl"></div>
+      -->
+      <div ng-view></div>
+      
       <div class="footer">
         <p>from Robert Fischer</p>
       </div>
@@ -53,6 +57,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-sha1/sha1.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -62,6 +67,13 @@
     <script src="components/login/loginService.js"></script>
     <script src="components/acceptCall/acceptCall.js"></script>
     <script src="components/acceptCall/acceptCallService.js"></script>
+    <script src="components/forwardCall/forwardCall.js"></script>
+    <script src="components/forwardCall/forwardCallService.js"></script>
+    <script src="components/manageReport/manageReport.js"></script>
+    <script src="components/manageReport/manageReportService.js"></script>
+    <script src="components/manageReport/updateReport.js"></script>
+    <script src="components/viewLog/viewLog.js"></script>
+    <script src="components/viewLog/viewLogService.js"></script>
     <!-- endbuild -->
 </body>
 </html>

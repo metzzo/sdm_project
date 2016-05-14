@@ -1,0 +1,24 @@
+<div class="container" ng-if="!shouldDisplayUpdateReport()">
+    <h1>Update Report</h1>
+    <p>You dont have sufficient rights to view this page</p>
+</div>
+<div class="container" ng-if="shouldDisplayUpdateReport() && shouldEditReport()">
+    <h1>Report from {{data.lastModification}} modified by {{data.userName}}</h1>
+    <form>
+        <div class="form-group">
+            <textarea ng-model="data.reportText" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" ng-click="submitReport()">Save</button>
+        </div>
+    </form>
+</div>
+
+<div class="container" ng-if="shouldDisplayUpdateReport() && !shouldEditReport()">
+    <h1>Report from {{data.lastModification}} modified by {{data.userName}}</h1>
+    <form>
+        <div class="form-group">
+            <textarea ng-model="data.reportText" class="form-control" disabled></textarea>
+        </div>
+    </form>
+</div>
