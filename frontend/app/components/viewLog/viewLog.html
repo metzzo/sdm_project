@@ -31,6 +31,15 @@
             <td>{{log.operation.additionalInfo}}</td>
             <td><button class="btn btn-default" ng-click="viewReport(log.operation.reportId)" ng-if="log.operation.reportId">Report</button></td>
         </tr>
+        <h2>Statistics</h2>
+        Amount of calls: #nr
+        Police emergency calls: #nr
+        Fire emergency calls: #nr
+        Workload of units: #nr
+        <table>
+            <tr><td>Unit</td><td>Workload</td></tr>
+            <tr><td>#name</td><td>#workload</td></tr>
+        </table>
         </tbody>
     </table>
 </div>
