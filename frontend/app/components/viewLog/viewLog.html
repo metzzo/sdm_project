@@ -15,6 +15,8 @@
                 <th>What</th>
                 <th>Who</th>
                 <th>Additional Info</th>
+                <th>Start Time</th>
+                <th>End Time</th>
                 <th></th>
             </tr>
         </thead>
@@ -22,13 +24,15 @@
             <tr ng-repeat="log in logs">
                 <td>{{log.callingTime}}</td>
                 <td>{{log.callingEndTime}}</td>
-                <td>{{log.assignedUnit}}</td>
+                <td>{{log.operation.assignedUnitName}}</td>
                 <td>{{log.operation.priority}}</td>
                 <td>{{log.operation.street}} {{log.operation.nr}}</td>
                 <td>{{log.operation.country}} {{log.operation.city}} {{log.operation.postalcode}}</td>
                 <td>{{log.operation.what}}</td>
                 <td>{{log.operation.who}}</td>
                 <td>{{log.operation.additionalInfo}}</td>
+                <td>{{log.operation.startTime}}</td>
+                <td>{{log.operation.endTime}}</td>
                 <td><button class="btn btn-default" ng-click="viewReport(log.operation.reportId)" ng-if="log.operation.reportId">Report</button></td>
             </tr>
             <tr ng-if="logs.length == 0">

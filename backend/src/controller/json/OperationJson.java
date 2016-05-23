@@ -6,6 +6,8 @@ import service.OperationDAO;
 import service.ReportDAO;
 import service.UserDAO;
 
+import java.util.Date;
+
 /**
  * Created by rfischer on 11.05.16.
  */
@@ -25,6 +27,9 @@ public class OperationJson {
     private Long emergencyUnitId;
     private Long reportId;
     private Long logId;
+    private Date startTime;
+    private Date endTime;
+    private String assignedUnitName;
 
     public OperationJson(Operation op) {
         this.id = op.getId();
@@ -40,8 +45,11 @@ public class OperationJson {
         this.additionalInfo = op.getAdditionalInfo();
         this.dispatcherId = op.getInitializer().getId();
         this.emergencyUnitId = op.getAssignedUnit() != null ? op.getAssignedUnit().getId() : null;
+        this.assignedUnitName = op.getAssignedUnit() != null ? op.getAssignedUnit().getUname() : "";
         this.reportId = op.getReport() != null ? op.getReport().getId() : null;
         this.logId = op.getLog() != null ? op.getLog().getId() : null;
+        this.startTime = op.getStartTime();
+        this.endTime = op.getEndTime();
     }
 
     public Operation toOperation() {
@@ -75,6 +83,6 @@ public class OperationJson {
 
         log = logId != null ? LogDAO.getInstance().findLogById(logId) : null;
 
-        return new Operation(opType, opPrio, address, who, what, additionalInfo, dispatcher, unit, report, log, id);
+        return new Operation(opType, opPrio, address, who, what, additionalInfo, dispatcher, unit, report, log, startTime, endTime, id);
     }
 }

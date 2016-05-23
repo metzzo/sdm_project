@@ -1,6 +1,7 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by rfischer on 11.05.16.
@@ -34,10 +35,14 @@ public class Operation {
     @OneToOne
     private Log log;
 
+    private Date startTime;
+
+    private Date endTime;
+
     public Operation() {
     }
 
-    public Operation(OperationType type, OperationPriority priority, Address address, String who, String what, String additionalInfo, Dispatcher initializer, EmergencyUnit assignedUnit, Report report, Log log, Long id) {
+    public Operation(OperationType type, OperationPriority priority, Address address, String who, String what, String additionalInfo, Dispatcher initializer, EmergencyUnit assignedUnit, Report report, Log log, Date startTime, Date endTime, Long id) {
         this.type = type;
         this.priority = priority;
         this.address = address;
@@ -48,6 +53,8 @@ public class Operation {
         this.assignedUnit = assignedUnit;
         this.report = report;
         this.log = log;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.id = id;
     }
 
@@ -137,5 +144,21 @@ public class Operation {
 
     public void setLog(Log log) {
         this.log = log;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }

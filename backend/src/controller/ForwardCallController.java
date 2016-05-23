@@ -32,6 +32,7 @@ public class ForwardCallController extends BaseServlet {
                     case POST: {
                         Operation op = gson.fromJson(getBody(), OperationJson.class).toOperation();
                         op.setAssignedUnit((EmergencyUnit)getUser());
+                        op.setStartTime(new Date());
                         OperationDAO.getInstance().persist(op);
                         success = true;
                         break;
@@ -41,6 +42,7 @@ public class ForwardCallController extends BaseServlet {
 
                         Report report = new Report("", new Date(), op.getAssignedUnit(), null);
                         op.setReport(report);
+                        op.setEndTime(new Date());
 
                         ReportDAO.getInstance().persist(report);
                         OperationDAO.getInstance().persist(op);
