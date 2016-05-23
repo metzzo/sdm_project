@@ -14,7 +14,7 @@ angular.module('frontendApp')
             // success
             var data = response.data;
             if (data.success) {
-              resolve(data.logs);
+              resolve(data);
             } else {
               reject();
             }

@@ -27,5 +27,5 @@ angular.module('frontendApp')
     
     $scope.shouldDisplayLogin = function() {
       return !loginService.getUser();
-    }
+    };
   });

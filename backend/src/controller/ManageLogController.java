@@ -28,7 +28,7 @@ public class ManageLogController extends BaseServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         boolean success = false;
         Gson gson = new GsonBuilder().create();
-        if (getUser() != null && (getUser() instanceof Dispatcher)) {
+        if (getUser() != null) {
             try {
                 switch (getRequestType()) {
                     case POST: {

@@ -36,9 +36,14 @@ angular.module('frontendApp')
       forwardCallService.takeOperation(op);
     };
     
-    $interval(function() {
+    var refresher = $interval(function() {
       if ($scope.shouldDisplayForwardCall()) {
         $scope.fetchOperations();
       }
     }, 1000);
+
+    $scope.$on('$destroy', function() {
+      $interval.cancel(refresher);
+      refresher = null;
+    });
   });

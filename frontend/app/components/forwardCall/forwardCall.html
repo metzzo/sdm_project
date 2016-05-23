@@ -7,13 +7,13 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>Priority</td>
-                    <td>Street Nr</td>
-                    <td>Country City Postalcode</td>
-                    <td>What</td>
-                    <td>Who</td>
-                    <td>Additional Info</td>
-                    <td></td>
+                    <th>Priority</th>
+                    <th>Street Nr</th>
+                    <th>Country City Postalcode</th>
+                    <th>What</th>
+                    <th>Who</th>
+                    <th>Additional Info</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +25,11 @@
                     <td>{{op.who}}</td>
                     <td>{{op.additionalInfo}}</td>
                     <td><button class="btn btn-default" ng-click="takeOperation(op)">Take</button></td>
+                </tr>
+                <tr ng-if="operations.length == 0">
+                    <td colspan="7">
+                        No operations available...
+                    </td>
                 </tr>
             </tbody>
         </table>

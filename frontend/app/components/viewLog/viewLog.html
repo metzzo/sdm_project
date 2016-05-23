@@ -5,41 +5,72 @@
 <div class="container" ng-if="shouldDisplayViewLog()">
     <table class="table table-striped">
         <thead>
-        <tr>
-            <td>Calling Time</td>
-            <td>Calling End Time</td>
-            <td>Assigned Unit</td>
-            <td>Priority</td>
-            <td>Street Nr</td>
-            <td>Country City Postalcode</td>
-            <td>What</td>
-            <td>Who</td>
-            <td>Additional Info</td>
-            <td></td>
-        </tr>
+            <tr>
+                <th>Calling Time</th>
+                <th>Calling End Time</th>
+                <th>Assigned Unit</th>
+                <th>Priority</th>
+                <th>Street Nr</th>
+                <th>Country City Postalcode</th>
+                <th>What</th>
+                <th>Who</th>
+                <th>Additional Info</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="log in logs">
-            <td>{{log.callingTime}}</td>
-            <td>{{log.callingEndTime}}</td>
-            <td>{{log.assignedUnit}}</td>
-            <td>{{log.operation.priority}}</td>
-            <td>{{log.operation.street}} {{log.operation.nr}}</td>
-            <td>{{log.operation.country}} {{log.operation.city}} {{log.operation.postalcode}}</td>
-            <td>{{log.operation.what}}</td>
-            <td>{{log.operation.who}}</td>
-            <td>{{log.operation.additionalInfo}}</td>
-            <td><button class="btn btn-default" ng-click="viewReport(log.operation.reportId)" ng-if="log.operation.reportId">Report</button></td>
+            <tr ng-repeat="log in logs">
+                <td>{{log.callingTime}}</td>
+                <td>{{log.callingEndTime}}</td>
+                <td>{{log.assignedUnit}}</td>
+                <td>{{log.operation.priority}}</td>
+                <td>{{log.operation.street}} {{log.operation.nr}}</td>
+                <td>{{log.operation.country}} {{log.operation.city}} {{log.operation.postalcode}}</td>
+                <td>{{log.operation.what}}</td>
+                <td>{{log.operation.who}}</td>
+                <td>{{log.operation.additionalInfo}}</td>
+                <td><button class="btn btn-default" ng-click="viewReport(log.operation.reportId)" ng-if="log.operation.reportId">Report</button></td>
+            </tr>
+            <tr ng-if="logs.length == 0">
+                <td colspan="10">
+                    No logs available...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Statistics</h2>
+    <table class="table table-striped">
+        <tr>
+            <td>Total calls</td>
+            <td>{{data.countOfCallsTotal}}</td>
         </tr>
-        <h2>Statistics</h2>
-        Amount of calls: #nr
-        Police emergency calls: #nr
-        Fire emergency calls: #nr
-        Workload of units: #nr
-        <table>
-            <tr><td>Unit</td><td>Workload</td></tr>
-            <tr><td>#name</td><td>#workload</td></tr>
-        </table>
+        <tr>
+            <td>Police emergency calls</td>
+            <td>{{data.countOfCallsPolice}}</td>
+        </tr>
+        <tr>
+            <td>Fire emergency calls</td>
+            <td>{{data.countOfCallsFire}}</td>
+        </tr>
+        <tr>
+            <td>Medical emergency calls</td>
+            <td>{{data.countOfCallsMedical}}</td>
+        </tr>
+    </table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Unit</th>
+                <th>Type</th>
+                <th>Workload</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="wl in data.workload">
+                <td>{{wl.user.username}}</td>
+                <td>{{wl.user.unitType}}</td>
+                <td>{{wl.amount}}</td>
+            </tr>
         </tbody>
     </table>
 </div>

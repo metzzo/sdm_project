@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -19,28 +20,19 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
+  
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#/login">Login</a></li>
-          <li><a ng-href="#/acceptCall">Accept Call</a></li>
-          <li><a ng-href="#/forwardCall">Forward Call</a></li>
-          <li><a ng-href="#/manageReport">Manage Report</a></li>
-          <li><a ng-href="#/viewLog">View Log</a></li>
-        </ul>
-        <h3 class="text-muted">Emergency Help</h3>
+      <div class="navbar">
+        <div ng-include="'components/menu/menu.html'" ng-controller="MenuCtrl"></div>
+        <h3 class="text-muted">Emergency Help System</h3>
       </div>
-      <!--
-      <div ng-include="'components/login/login.html'" ng-controller="LoginCtrl"></div>
-      <div ng-include="'components/acceptCall/acceptCall.html'" ng-controller="AcceptCallCtrl"></div>
-      <div ng-include="'components/forwardCall/forwardCall.html'" ng-controller="ForwardCallCtrl"></div>
-      -->
-      <div ng-view></div>
-      
-      <div class="footer">
-        <p>from Robert Fischer</p>
+
+      <div class="container" ng-view></div>
+    </div>
+    
+    <div class="footer">
+      <div class="container">
+        <p class="text-muted">Written by <a href="http://programming-with-design.at/" target="_blank">Robert Fischer</a></p>
       </div>
     </div>
 
@@ -58,6 +50,7 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-sha1/sha1.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -74,6 +67,7 @@
     <script src="components/manageReport/updateReport.js"></script>
     <script src="components/viewLog/viewLog.js"></script>
     <script src="components/viewLog/viewLogService.js"></script>
+    <script src="components/menu/menu.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -5,20 +5,25 @@
 <div class="container" ng-if="shouldDisplayManageReport()">
     <table class="table table-striped">
         <thead>
-        <tr>
-            <td>Last Modification</td>
-            <td>Text</td>
-            <td>Emergency unit</td>
-            <td></td>
-        </tr>
+            <tr>
+                <th>Last Modification</th>
+                <th>Text</th>
+                <th>Emergency unit</th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="report in reports">
-            <td>{{report.lastModification}}</td>
-            <td>{{report.reportText}}</td>
-            <td>{{report.userName}}</td>
-            <td><button class="btn btn-default" ng-click="updateReport(report)">Modify</button></td>
-        </tr>
+            <tr ng-repeat="report in reports">
+                <td>{{report.lastModification}}</td>
+                <td>{{report.reportText}}</td>
+                <td>{{report.userName}}</td>
+                <td><button class="btn btn-default" ng-click="updateReport(report)">Modify</button></td>
+            </tr>
+            <tr ng-if="reports.length == 0">
+                <td colspan="4">
+                    No reports available...
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

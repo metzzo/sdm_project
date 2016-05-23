@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by rfischer on 10.05.16.
  */
-@WebServlet(name = "LoginAjaxController", urlPatterns = {"/loginController"})
-public class LoginAjaxController extends BaseServlet {
+@WebServlet(name = "LoginController", urlPatterns = {"/loginController"})
+public class LoginController extends BaseServlet {
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         Gson gson = new GsonBuilder().create();

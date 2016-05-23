@@ -3,7 +3,7 @@
  */
 
 angular.module('frontendApp')
-  .controller('ViewLogCtrl', function ($scope, $location, loginService, viewLogService) {
+  .controller('ViewLogCtrl', function ($scope, $interval, $location, loginService, viewLogService) {
     $scope.logs = [];
     
     $scope.shouldDisplayViewLog = function() {
@@ -13,12 +13,26 @@ angular.module('frontendApp')
     $scope.viewReport = function(reportId) {
       $location.path('/updateReport/' + reportId);
     };
+    var update = function() {
+      viewLogService.getLogs()
+        .then(function (data) {
+          console.log('success');
+          $scope.logs = data.logs;
+          $scope.data = data;
+        }, function () {
+          console.log('fail');
+        });
+    };
     
-    viewLogService.getLogs()
-      .then(function(data) {
-        console.log('success');
-        $scope.logs = data;
-      }, function() {
-        console.log('fail');
-      });
+    update();
+    var refresher = $interval(function() {
+      if ($scope.shouldDisplayViewLog()) {
+        update();
+      }
+    }, 1000);
+
+    $scope.$on('$destroy', function() {
+      $interval.cancel(refresher);
+      refresher = null;
+    });
   });

@@ -1,0 +1,7 @@
+<ul class="nav nav-pills pull-right">
+    <li ng-class="getClass('/login')"><a ng-href="#/login" ng-if="shouldDisplayLogin()">Login</a></li>
+    <li ng-class="getClass('/acceptCall')"><a ng-href="#/acceptCall" ng-if="shouldDisplayAcceptCall()">Accept Call</a></li>
+    <li ng-class="getClass('/forwardCall')"><a ng-href="#/forwardCall" ng-if="shouldDisplayForwardCall()">Forward Call</a></li>
+    <li ng-class="getClass('/manageReport')"><a ng-href="#/manageReport" ng-if="shouldDisplayManageReport()">Manage Report</a></li>
+    <li ng-class="getClass('/viewLog')"><a ng-href="#/viewLog" ng-if="shouldDisplayViewLog()">View Log</a></li>
+</ul>

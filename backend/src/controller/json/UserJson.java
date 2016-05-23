@@ -1,6 +1,7 @@
 package controller.json;
 
 import domain.Dispatcher;
+import domain.EmergencyUnit;
 import domain.User;
 
 /**
@@ -13,6 +14,7 @@ public class UserJson {
     private String email;
     private boolean success;
     private String type;
+    private String unitType;
 
     public UserJson(User user) {
         this.id = user.getId();
@@ -21,6 +23,7 @@ public class UserJson {
         this.email = user.getEmail();
         this.success = true;
         this.type = user.getClass().getSimpleName();
+        this.unitType = (user instanceof EmergencyUnit) ? ((EmergencyUnit)user).getUnitType().toString() : "";
     }
 
     public User toUser() {

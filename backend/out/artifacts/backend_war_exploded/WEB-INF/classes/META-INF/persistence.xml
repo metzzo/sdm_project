@@ -7,7 +7,7 @@
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="eclipselink.logging.level" value="FINE"/>
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
             <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
             <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
             <property name="eclipselink.ddl-generation.output-mode" value="both"/>

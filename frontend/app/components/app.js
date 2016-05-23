@@ -9,11 +9,13 @@
  * Main module of the application.
  */
 angular
-  .module('frontendApp', ['angular-sha1', 'ngRoute'])
+  .module('frontendApp', ['angular-loading-bar', 'angular-sha1', 'ngRoute'])
   .constant('serviceURL', 'http://localhost:8080/backend_war_exploded')
-  .config(function($httpProvider, $routeProvider) {
+  .config(function($httpProvider, $routeProvider, cfpLoadingBarProvider) {
     $httpProvider.defaults.withCredentials = true;
-
+    cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.includeBar = true;
+    
     $routeProvider.
       when('/login', {
         templateUrl: 'components/login/login.html',
