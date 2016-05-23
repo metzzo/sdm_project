@@ -11,7 +11,7 @@ angular.module('frontendApp')
     };
     
     $scope.viewReport = function(reportId) {
-      $location.path('/updateReport/' + reportId);
+      $location.path('manageReport/' + reportId);
     };
     var update = function() {
       viewLogService.getLogs()

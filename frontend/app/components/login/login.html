@@ -1,14 +1,22 @@
-<h1>Log in</h1>
-<div class="container" ng-if="!shouldDisplayLogin()">
-    <p>You are logged in</p>
-</div>
+
 <div class="container" ng-if="shouldDisplayLogin()">
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Username" ng-model="data.username" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="data.pw" required>
-    <div ng-if="loginFailed" class="row">
-        Unknown username or wrong password.
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h1>Log in</h1>
+            <div class="container" ng-if="!shouldDisplayLogin()">
+                <p>You are logged in</p>
+            </div>
+            
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" id="inputUsername" class="form-control" placeholder="Username" ng-model="data.username" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="data.pw" required>
+            <div ng-if="loginFailed" class="row">
+                Unknown username or wrong password.
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">Sign in</button>
+        </div>
+        <div class="col-md-4"></div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">Sign in</button>
-</div> <!-- /container -->
+</div>
